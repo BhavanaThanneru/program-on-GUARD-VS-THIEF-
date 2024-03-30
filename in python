@@ -1,0 +1,30 @@
+  import math
+
+def catch_thieves(thieves, catch_distance):
+    caught_thieves = []
+    for i, thief in enumerate(thieves):
+        x, y = thief
+        distance = math.sqrt(x**2 + y**2)
+        if distance <= catch_distance:
+            caught_thieves.append((i+1, x, y))
+    return caught_thieves
+
+def main():
+    num_thieves = int(input())
+    thieves = []
+    for i in range(num_thieves):
+        x, y = map(int, input().split())
+        thieves.append((x, y))
+    catch_distance = int(input())
+
+    caught_thieves = catch_thieves(thieves, catch_distance)
+
+    if len(caught_thieves) == 0:
+        print("No thieves caught")
+    else:
+        for thief in caught_thieves:
+            index, x, y = thief
+            print(f"Thief {index}: {x} {y}")
+
+if __name__ == "__main__":
+    main()
